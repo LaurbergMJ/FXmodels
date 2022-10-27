@@ -93,3 +93,8 @@ print(cc)
 
 ##combined_data = fred_data.copy(deep=True)
 
+
+list_of_EUR_data = ['HICP', 'ext_trd', 'PPI', 'IndProd']
+def get_data_EUstat(lst_EU):
+    return None 
+
