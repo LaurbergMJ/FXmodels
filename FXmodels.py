@@ -12,7 +12,7 @@ frequency = "m"
 list_of_FRED_data = ['IndProd', 'CPI', 'PPI', 'Vix', '5Y5Y_infl_fwd', 'Bei_10y', 'Imp', 'Exp']
 
 fred_data = pd.DataFrame()
-
+eurstat_data = pd.DataFrame()
 
 def get_fred_data(lst):
     #Loading all necessary data from FRED into a dataframe
@@ -24,9 +24,9 @@ def get_fred_data(lst):
 
     return fred_data 
 
-cc = get_fred_data(list_of_FRED_data)
+#cc = get_fred_data(list_of_FRED_data)
 
-print(cc)
+#print(cc)
 
 #print(fred_data)
 
@@ -94,7 +94,18 @@ print(cc)
 ##combined_data = fred_data.copy(deep=True)
 
 
-list_of_EUR_data = ['HICP', 'ext_trd', 'PPI', 'IndProd']
-def get_data_EUstat(lst_EU):
-    return None 
+#list_of_EUR_data = ['HICP', 'ext_trd', 'PPI', 'IndProd']
+list_of_EUR_data = ['HICP']
 
+def get_data_EUstat(lst_EU):
+    for x in lst_EU:
+        if not 'dates' in eurstat_data.columns:
+            eurstat_data['dates'] = (fct.get_eurostat(dat.eurostat_data[x]).index)
+        else:
+            eurstat_data[x] = (fct.get_eurostat(dat.eurostat_data[x]).values)
+
+    return eurstat_data 
+
+cc = get_data_EUstat(list_of_EUR_data)
+
+print(cc)
